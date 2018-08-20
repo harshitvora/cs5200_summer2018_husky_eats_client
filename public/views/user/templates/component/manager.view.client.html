@@ -8,8 +8,7 @@
             You do not manage any restaurants :(
         </div>
         <div ng-if="model.isManager">
-            {{model.restaurant.name}}<br>
-            <a href="#!/restaurant/{{model.restaurant.id}}">Go to restaurant page</a><br><br>
+            <a href="#!/restaurant/{{model.restaurant.id}}">{{model.restaurant.name}}</a><br><br>
             Add Menu:
             <div class="form-group">
                 <label for="menuName">Menu name:</label>
