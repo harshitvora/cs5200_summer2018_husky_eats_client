@@ -2,7 +2,7 @@
     <div class="col-xs-12 col-md-6 husky-container">
         <ul class="nav nav-tabs">
             <li><a ng-click="model.toAvailableOrders()">Outstanding orders ({{model.availableOrders.length}})</a></li>
-            <li class="active"><a ng-click="model.toDeliveries()">Deliveries Completed</a></li>
+            <li class="active"><a ng-click="model.toDeliveries()">Deliveries</a></li>
         </ul>
         <h4>Deliveries:</h4>
 
@@ -14,7 +14,7 @@
                 <br>
                 Order Status: {{order.status}}
                 <br>
-                <a>Delivered to</a>
+                <a>Deliver to</a>
                 <br>
                 Customer: {{order.customer.firstName}}
                 <br>
