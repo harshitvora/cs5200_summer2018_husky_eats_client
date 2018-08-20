@@ -1,0 +1,101 @@
+<div class="husky-bgimg"></div>
+<nav class="navbar navbar-fixed-top">
+    <div class="container">
+        <div class="navbar-header">
+            <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false" aria-controls="navbar">
+                <span class="sr-only">Toggle navigation</span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+            </button>
+            <!--<a class="navbar-brand" href="#"><span class="fa fa-chevron-left"></span></a>-->
+            <a class="navbar-brand" href="#">HUSKYEATS</a>
+        </div>
+        <div id="navbar" class="navbar-collapse collapse">
+            <ul class="nav navbar-nav">
+                <li class="active"><a href="#"><span class="fa fa-search"></span> Search</a></li>
+                <li ng-show="model.currentUser" ><a href="#!/user"><span class="fa fa-user"></span> {{model.currentUser.firstName}}</a></li>
+                <li ng-show="!model.currentUser"><a href="#!/login"><span class="glyphicon glyphicon-log-in"></span> Login</a></li>
+                <li ng-show="!model.currentUser"><a href="#!/register"><span class="glyphicon glyphicon-edit"></span> Register</a></li>
+                <li ng-show="model.currentUser"><a ng-click="model.logout()"><span class="glyphicon glyphicon-log-out"></span> Logout</a></li>
+            </ul>
+        </div><!--/.nav-collapse -->
+    </div>
+</nav>
+<div class="container-fluid">
+    <div class="row">
+        <div class="col-md-6 col-md-offset-3 husky-container">
+            <div class="row">
+                <div class="col-xs-12">
+                    <input type="text" placeholder="I'm looking for..." ng-model="name" class="form-control">
+                    <a class="btn btn-block form-control pinkBtn" ng-click="model.searchRestaurantByName(name)"><span class="fa fa-search"></span> Search</a>
+                    <br>
+                    <table class="table">
+                        <tbody>
+                        <tr>
+                            <td><a ng-click="model.searchRestaurantByCuisine(1)">
+                                <img src="../../../uploads/american.jpg" class="img-rounded float-left img-fluid" alt="American" width="150" height="100">
+                                American</a>
+                            </td>
+                            <td><a ng-click="model.searchRestaurantByCuisine(3)">
+                                <img src="../../../uploads/asian.jpeg" class="img-rounded float-left img-fluid" alt="Asian" width="150" height="100">
+                                Asian</a>
+                            </td>
+                            <td><a ng-click="model.searchRestaurantByCuisine(25)">
+                                <img src="../../../uploads/chinese.jpeg" class="img-rounded float-left img-fluid" alt="Chinese" width="150" height="100">
+                                Chinese</a>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td><a ng-click="model.searchRestaurantByCuisine(148)">
+                                <img src="../../../uploads/indian.jpg" class="img-rounded float-left img-fluid" alt="Indian" width="150" height="100">
+                                Indian</a>
+                            </td>
+                            <td><a ng-click="model.searchRestaurantByCuisine(55)">
+                                <img src="../../../uploads/italian.jpeg" class="img-rounded float-left img-fluid" alt="Italian" width="150" height="100">
+                                Italian</a>
+                            </td>
+                            <td><a ng-click="model.searchRestaurantByCuisine(70)">
+                                <img src="../../../uploads/falafel.jpg" class="img-rounded float-left img-fluid" alt="Mediterranean" width="150" height="100">
+                                Mediterranean</a>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td><a ng-click="model.searchRestaurantByCuisine(73)">
+                                <img src="../../../uploads/mexican.jpeg" class="img-rounded float-left img-fluid" alt="Mexican" width="150" height="100">
+                                Mexican</a>
+                            </td>
+                            <td><a ng-click="model.searchRestaurantByCuisine(308)">
+                                <img src="../../../uploads/vegetarian.jpg" class="img-rounded float-left img-fluid" alt="Vegetarian" width="150" height="100">
+                                Vegetarian</a>
+                            </td>
+                            <td><a ng-click="model.searchRestaurantByCuisine(60)">
+                                <img src="../../../uploads/japanese.jpeg" class="img-rounded float-left img-fluid" alt="Japanese" width="150" height="100">
+                                Japanese</a>
+                            </td>
+                        </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="row husky-spacing"></div>
+    <div class="row">
+            <div class="col-xs-12 col-md-6 col-md-offset-3 husky-container">
+
+                <div ng-show="result"><h4>Search results:</h4>
+                    <ul class="list-group">
+                        <li class="list-group-item" ng-repeat="val in result.restaurants">
+                            <a href="#!/restaurant/{{val.restaurant.R.res_id}}">{{val.restaurant.name}}</a><br>
+                            Address: {{val.restaurant.location.address}}<br>
+                            Average cost for two: ${{val.restaurant.average_cost_for_two}}<br>
+                            Average Rating: {{val.restaurant.user_rating.aggregate_rating}}<br>
+                            Photos: <a href="{{val.restaurant.photos_url}}">{{val.restaurant.name}} Photos</a><br>
+                            <div ng-show="val.restaurant.featured_image"><img class="img-responsive img-thumbnail" src="{{val.restaurant.featured_image}}"></div>
+                        </li>
+                    </ul></div>
+
+            </div>
+        </div>
+</div>

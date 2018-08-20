@@ -1,0 +1,82 @@
+<div class="husky-bgimg"></div>
+<nav class="navbar navbar-fixed-top">
+    <div class="container">
+        <div class="navbar-header">
+            <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar"
+                    aria-expanded="false" aria-controls="navbar">
+                <span class="sr-only">Toggle navigation</span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+            </button>
+            <a class="navbar-brand" href="#">HUSKYEATS</a>
+        </div>
+        <div id="navbar" class="navbar-collapse collapse">
+            <ul class="nav navbar-nav">
+                <li><a href="#"><span class="fa fa-search"></span> Search</a></li>
+                <li ng-show="model.user"><a href="#!/user"><span class="fa fa-user"></span> {{model.user.firstName}}</a>
+                </li>
+                <li ng-show="!model.user"><a href="#!/login"><span class="glyphicon glyphicon-log-in"></span> Login</a>
+                </li>
+                </li>
+                <li ng-show="model.user"><a ng-click="model.logout()"><span class="glyphicon glyphicon-log-out"></span>
+                    Logout</a></li>
+            </ul>
+        </div><!--/.nav-collapse -->
+    </div>
+</nav>
+<div class="container-fluid">
+    <div class="row">
+
+        <div class="col-xs-12 col-md-3 col-md-offset-1 husky-container husky-margin">
+            <img class="img-responsive img-thumbnail" ng-show="model.restaurant.imageUrl" src="{{model.restaurant.imageUrl}}">
+            <h4>{{model.restaurant.name}}</h4>
+            Average Rating: <div ng-show="model.restaurant.aggregateRating" class="btn" style="background-color: #FFB6C1">
+                {{model.restaurant.aggregateRating}}</div>
+            <hr>
+            <img src="{{model.mapUrl}}" class="img-responsive img-thumbnail" style="display: inline">
+        </div>
+        <div class="col-xs-12 col-md-7">
+            <div class="row">
+                <div class="col-xs-12 husky-container">
+                    <div ng-switch="model.currentTab" class="col-xs-12 husky-container" style="">
+                        <div ng-switch-when="MENU">
+                            <ng-include src="'views/home/templates/component/menu.view.client.html'">
+                        </div>
+                        <div ng-switch-when="REVIEW">
+                            <ng-include src="'views/home/templates/component/review.view.client.html'">
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <!-- TODO show quantity for each item-->
+            <div class="row">
+                <div class="husky-spacing"></div>
+                <div class="col-xs-12 husky-container">
+                    Your cart currently contains:
+                    <div ng-show="model.cart"><h4></h4>
+                        <ul class="list-group" ng-init="total = 0">
+                            <div ng-init="$parent.total = $parent.total + item.price"
+                                 ng-repeat="item in model.cart track by $index">
+                                {{item.name}} &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                                ${{item.price}}
+                            </div>
+                        </ul>
+                        <br>Total: ${{total}}<br><br>
+                        <button type="button" class="btn btn-sm pinkBtn" ng-click="model.placeOrder()">Place order
+                        </button>
+                    </div>
+                </div>
+            </div>
+
+            <div class="row" ng-if="model.user.role == 'MANAGER'">
+                <div class="husky-spacing"></div>
+                <div class="col-xs-12 husky-container" ng-if="!model.isManager">
+                    <small>Do you work at <b>{{model.restaurant.name}}</b>?
+                        Click <a ng-click="model.registerManager()">here</a> to become the manager for this page!
+                    </small>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

@@ -1,0 +1,19 @@
+<ul class="nav nav-tabs">
+    <li class="active"><a ng-click="model.toMenu()">Menu</a></li>
+    <li><a ng-click="model.toReview()">Reviews ({{model.reviews.length}})</a></li>
+</ul>
+<h4>Menus/Items for this restaurant are:</h4>
+<div ng-show="model.menuItems"><h4></h4>
+    <ul class="list-group">
+          <div ng-repeat="menu in model.menuItems">
+            Menu: {{menu.name}}
+            <br>Items:
+             <div ng-repeat="item in menu.items">
+                {{item.name}} &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                ${{item.price}} &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                <button type="button" class="btn btn-sm pinkBtn" ng-click="model.addToCart(item)">Add</button>
+                <b></b><br/>
+             </div>
+          </div>
+        </li>
+    </ul></div>

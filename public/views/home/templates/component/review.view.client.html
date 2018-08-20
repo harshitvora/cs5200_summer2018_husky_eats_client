@@ -1,0 +1,52 @@
+<ul class="nav nav-tabs">
+    <li><a ng-click="model.toMenu()">Menu</a></li>
+    <li class="active"><a ng-click="model.toReview()">Reviews ({{model.reviews.length}})</a></li>
+</ul>
+
+<div ng-show="model.loggedin">
+    <div ng-show="!model.userReview">
+        <br>
+        <label for="title">Write a Review:</label><br>
+        <div ng-show="model.errorMessage" class="alert alert-danger">
+            {{model.errorMessage}}
+        </div>
+        <ng-rating ng-model="model.newReview.rating" editable="true"></ng-rating>
+        <div class="form-group">
+            <input type="text"
+                   name="title"
+                   id="title"
+                   ng-model="model.newReview.title"
+                   placeholder="Title"
+                   class="form-control">
+        </div>
+        <div class="form-group">
+                            <textarea name="text"
+                                      ng-model="model.newReview.text"
+                                      class="form-control"
+                                      placeholder="Say something about this place"
+                                      rows="5">{{model.newReview.text}}</textarea>
+        </div>
+        <a role="button" ng-click="model.createReview(model.newReview)"
+           class="btn pinkBtn btn-block">Post</a>
+    </div>
+</div>
+<br>
+<h4>Reviews:</h4>
+<ul class="list-group">
+    <li class="list-group-item" ng-repeat="review in model.reviews">
+        <ng-rating ng-model="review.rating" editable="false"></ng-rating>
+        <br>
+        <h5>{{review.title}}:</h5>
+        <small>By <a href="#!/user/{{review.customer.id}}">{{review.customer.firstName}}</a> on
+            {{review.dateCreated | date}}
+        </small>
+        <br>
+        {{review.text}}<br>
+    </li>
+    <li class="list-group-item" ng-show="!model.reviews.length">
+        There are no reviews for this restaurant, be the first one to leave a review!
+    </li>
+</ul>
+
+
+

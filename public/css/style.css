@@ -1,0 +1,76 @@
+a{
+    color: #f23151;
+    font-weight: bold;
+}
+
+a:hover{
+    color: #f23151;
+    text-decoration: none;
+    cursor: pointer;
+}
+
+.navbar-default .navbar-brand:hover,
+.navbar-default .navbar-brand:focus {
+    background-color: transparent;
+    color: #f23151;
+}
+
+.nav.navbar-default{
+    margin: auto;
+}
+
+.husky-bgimg {
+    position: fixed;
+    left:0;
+    right: 0;
+    top:0;
+    bottom: 0;
+    background-size: cover;
+    background-image: url('../uploads/food-plate-healthy.jpg');
+}
+
+input{
+    margin-bottom: 5px;
+}
+
+body{
+    padding-top: 80px;
+    padding-bottom: 15px;
+    background-color: #fcfcfc;
+    font-family: Arial, serif;
+}
+
+.husky-glyphicon{
+    margin-right: 10px;
+}
+
+.husky-text-center{
+    text-align: center;
+}
+
+.husky-spacing{
+    height: 15px;
+}
+
+.husky-container{
+    background-color: #ffffff;
+    padding: 25px;
+}
+
+.husky-container-map{
+    background-color: white;
+    padding: 5px;
+    margin: auto;
+    text-align: center
+}
+
+.husky-margin{
+    margin-right: 15px;
+    margin-bottom: 15px;
+}
+
+.pinkBtn {
+    color: #fff;
+    background-color: #f23151;
+    border-color: #d43150;
+}

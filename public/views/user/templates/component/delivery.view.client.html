@@ -1,0 +1,60 @@
+<div class="row">
+    <div class="col-xs-12 col-md-6 husky-container">
+        <ul class="nav nav-tabs">
+            <li><a ng-click="model.toAvailableOrders()">Outstanding orders ({{model.availableOrders.length}})</a></li>
+            <li class="active"><a ng-click="model.toDeliveries()">Deliveries Completed</a></li>
+        </ul>
+        <h4>Delivery:</h4>
+
+        {{model.currentOrder}}
+        <br>
+        Restaurant:
+        <a href="#!/restaurant/{{model.currentOrder.restaurant.id}}">{{model.currentOrder.restaurant.name}}</a>
+
+        <br>
+        Status: {{model.currentOrder.status}}
+        <br>
+        Cost: ${{model.currentOrder.amount}}
+        <br>
+        <a>Deliver to:</a>
+        <br>
+        Customer: <a href="#!/user/{{model.currentOrder.customer.id}}">{{model.currentOrder.customer.firstName}}</a>
+        <br>
+        Phone number: {{model.currentOrder.customer.phones[0]}}
+        <br>
+        Address: {{model.currentOrder.customer.address[0]}}
+
+        Restaurant location:
+        <br><br>
+        <img src="{{model.mapUrl}}" class="img-responsive img-thumbnail" style="display: inline">
+
+        <br><br>
+        <div ng-switch="model.currentOrder.status">
+            <div ng-switch-when="ACCEPTED">
+                    <a ng-click="model.updateStatus(model.currentOrder, 'COLLECTING')"
+                       class="btn pinkBtn btn-block"
+                       role="button">Collecting</a>
+            </div>
+            <div ng-switch-when="COLLECTING">
+                    <a ng-click="model.updateStatus(model.currentOrder, 'DELIVERING')"
+                       class="btn pinkBtn btn-block"
+                       role="button">Collected</a>
+            </div>
+            <div ng-switch-when="DELIVERING">
+                <a ng-click="model.updateStatus(model.currentOrder, 'DELIVERED')"
+                   class="btn pinkBtn btn-block"
+                   role="button">Delivered</a>
+            </div>
+        </div>
+        <br>
+        <div ng-show="model.canCancel">
+            <a ng-click="model.cancelOrder()"
+               class="btn btn-default btn-block"
+               role="button">Cancel</a>
+        </div>
+    </div>
+</div>
+
+
+
+

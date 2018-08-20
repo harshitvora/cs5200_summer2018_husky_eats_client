@@ -1,0 +1,32 @@
+<div class="row">
+    <div class="col-xs-12 col-md-6 husky-container">
+        <ul class="nav nav-tabs">
+            <li><a ng-click="model.toAvailableOrders()">Outstanding orders ({{model.availableOrders.length}})</a></li>
+            <li class="active"><a ng-click="model.toDeliveries()">Deliveries Completed</a></li>
+        </ul>
+        <h4>Deliveries:</h4>
+
+        <ul class="list-group">
+            <li class="list-group-item" ng-repeat="order in model.orders">
+                <a ng-click="model.toDelivery(order)">Order {{order.id}}</a>
+                <br>
+                Pickup from: <a href="#!/restaurant/{{order.restaurant.id}}">{{order.restaurant.name}}</a>
+                <br>
+                Order Status: {{order.status}}
+                <br>
+                <a>Delivered to</a>
+                <br>
+                Customer: {{order.customer.firstName}}
+                <br>
+                Address: {{order.customer.address[0]}}
+            </li>
+            <li class="list-group-item" ng-show="!model.orders.length">
+                You have not done any deliveries :(
+            </li>
+        </ul>
+    </div>
+</div>
+
+
+
+
