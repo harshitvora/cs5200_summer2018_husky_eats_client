@@ -80,7 +80,7 @@
         }
 
         function deleteUser(userId) {
-            return $http.delete(SERVER_URL + "/api/user/"+userId)
+            return $http.delete({url:SERVER_URL + "/api/user/"+userId, headers:{'Content-Type':'application/json'}})
                 .then(function (response) {
                     return response.data;
                 });
