@@ -5,9 +5,10 @@
         </ul>
         <h4>Edit page details:</h4>
         <div ng-if="!model.isManager">
-            You have not manage any restaurants :(
+            You do not manage any restaurants :(
         </div>
         <div ng-if="model.isManager">
+            {{model.restaurant.name}}<br>
             <a href="#!/restaurant/{{model.restaurant.id}}">Go to restaurant page</a><br><br>
             Add Menu:
             <div class="form-group">
